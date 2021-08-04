@@ -6,8 +6,11 @@ export const ScoreProvider = ({children})=>{
     const [userName , setUserName] = useState("")
     const [score , setScore] = useState(0);
 
+    const incrementScore = ()=>{
+        setScore(score+1);
+    }
     return (
-        <ScoreContext.Provider value = {{userName,setUserName,score,setScore}}>
+        <ScoreContext.Provider value = {{userName,setUserName,score,setScore,incrementScore}}>
             {children}
         </ScoreContext.Provider>
     )

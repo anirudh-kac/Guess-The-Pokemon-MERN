@@ -1,11 +1,27 @@
-import "./App.css"
+import {Route} from 'react-router-dom'
+
 import Game from "./components/Game";
 import Home from "./components/Home";
+import Leaderboard from './components/Leaderboard';
+
+import "./App.css"
+
+
 
 function App() {
   return (
     <div className="App">
-      <Game/>
+      <Route path = "/" exact>
+        <Home/>
+      </Route>
+
+      <Route path = "/game" exact>
+        <Game/>
+      </Route>
+
+      <Route path = "/leaderboard" exact>
+        <Leaderboard/>
+      </Route>
     </div>
   );
 }

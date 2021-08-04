@@ -1,25 +1,36 @@
-import {useState} from 'react'
+import {useState,useContext} from 'react'
+import {useHistory} from 'react-router-dom'
+
+import ScoreContext from '../context/ScoreContext'
 
 function Game() {
     const [enteredName , setEnteredName] = useState("");
+    const {score,incrementScore} = useContext(ScoreContext);
+
+    const history = useHistory()
 
     const handleClick = (e)=>{
         e.preventDefault();
         if(enteredName === "poke"){
-            alert("Clicked")
+            incrementScore();
+            //get new pokemon
+            //show message
         }else{
             alert("Wrong")
+
+            //write score
+            history.push('/score')
         }
         
     }
 
     const handleChange = (e) =>{
-        setEnteredName(e.targetValue);
+        setEnteredName(e.target.value);
     }
     return (
         <div className = "flex flex-col items-center justify-center">
             <div className = "mt-5 flex flex-col justify-end">
-                <p className = "font-bold ">Current Score : 100</p>
+                <p className = "font-bold ">Current Score : {score}</p>
                 <p className = "font-bold ">Hi Score : 100</p>
             </div>
             <div className = "flex flex-col items-center justify-center sm: w-full md:w-1/2 lg:w-1/3">

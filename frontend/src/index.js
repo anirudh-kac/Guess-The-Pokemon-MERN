@@ -4,12 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ScoreProvider } from './context/ScoreContext';
+import {BrowserRouter as Router} from 'react-router-dom'
 
 
 ReactDOM.render(
   <React.StrictMode>
     <ScoreProvider>
+      <Router>
       <App />
+      </Router>
+      
     </ScoreProvider>
   </React.StrictMode>,
   document.getElementById('root')
