@@ -7,8 +7,13 @@ const router = express.Router()
 //get all scores
 router.get('/',async (req,res)=>{
     const scores = await Score.find({}).limit(10).sort('-score').exec()
-    console.log(scores);
     res.json(scores).status(200);
+})
+
+//get hi score
+router.get('/hiscore',async (req,res)=>{
+    const scores = await Score.find({}).limit(1).sort('-score').exec()
+    res.json(scores[0]).status(200);
 })
 
 
