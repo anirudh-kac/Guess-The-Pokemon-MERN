@@ -7,7 +7,7 @@ import Loader from "./Loader"
 import ScoreContext from '../context/ScoreContext'
 
 function Game() {
-    const {score,incrementScore} = useContext(ScoreContext);
+    const {userName,score,incrementScore} = useContext(ScoreContext);
     const history = useHistory()
 
     const [enteredName , setEnteredName] = useState("");
@@ -24,6 +24,10 @@ function Game() {
     }
     
     useEffect(() => {
+        if(!userName){
+            history.push('/')
+            return
+        }
         getNewPokemon();
     }, [])
 
