@@ -2,6 +2,8 @@ import {useState,useContext,useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 
+import Loader from "./Loader"
+
 import ScoreContext from '../context/ScoreContext'
 
 function Game() {
@@ -9,7 +11,7 @@ function Game() {
     const history = useHistory()
 
     const [enteredName , setEnteredName] = useState("");
-    const [loading,setLoading] = useState(false);
+    const [loading,setLoading] = useState(true);
     const [pokemonName , setPokemonName] = useState("");
     const [image , setImage] = useState("");
 
@@ -57,7 +59,7 @@ function Game() {
 
                 {loading
                  ? 
-                 <h1>Loading ......</h1>
+                 <Loader/>
                   : 
                 <img  className = "h-64 w-auto" src = {image} alt ="Pokemon"/>
                 }
@@ -69,7 +71,7 @@ function Game() {
                          value = {enteredName}
                          onChange = {handleChange}
                          placeholder = "Pokemon Name"/>
-                        <button className = "bg-green-400 p-2 white"
+                        <button className = "bg-green-400 p-2 text-white"
                          type = "submit"
                          onClick = {handleClick}
                          >
