@@ -26,7 +26,7 @@ function Home() {
     return (
         <div className = "flex flex-col items-center justify-center">
             <div className = "flex flex-col items-center justify-center sm: w-full md:w-1/2 lg:w-1/3">
-                <img  className = "h-64 w-auto" src = {pokeLogo} alt = "Pokemon Logo"/>
+                <img  className = "m-8 h-auto w-64" src = {pokeLogo} alt = "Pokemon Logo"/>
                 <p className = "text-4xl text-center">Guess the Pokemon</p>
                 <p className = "text-md text-center">Enter your name to start</p>
 
