@@ -1,19 +1,37 @@
-import {useState,useContext} from 'react'
+import {useState,useContext,useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
+import axios from 'axios'
 
 import ScoreContext from '../context/ScoreContext'
 
 function Game() {
-    const [enteredName , setEnteredName] = useState("");
     const {score,incrementScore} = useContext(ScoreContext);
-
     const history = useHistory()
+
+    const [enteredName , setEnteredName] = useState("");
+    const [loading,setLoading] = useState(false);
+    const [pokemonName , setPokemonName] = useState("");
+    const [image , setImage] = useState("");
+
+    const getNewPokemon = async ()=>{
+        setLoading(true);
+        const {data} = await axios.get('/pokemon');
+        setPokemonName(data.name);
+        setImage(data.image);
+        setLoading(false)
+    }
+    
+    useEffect(() => {
+        getNewPokemon();
+    }, [])
 
     const handleClick = (e)=>{
         e.preventDefault();
-        if(enteredName === "poke"){
+        setEnteredName("");
+        if(enteredName.toLowerCase() === pokemonName.toLowerCase()){
             incrementScore();
             //get new pokemon
+            getNewPokemon();
             //show message
         }else{
             alert("Wrong")
@@ -27,14 +45,22 @@ function Game() {
     const handleChange = (e) =>{
         setEnteredName(e.target.value);
     }
+
     return (
         <div className = "flex flex-col items-center justify-center">
             <div className = "mt-5 flex flex-col justify-end">
+                
                 <p className = "font-bold ">Current Score : {score}</p>
                 <p className = "font-bold ">Hi Score : 100</p>
             </div>
             <div className = "flex flex-col items-center justify-center sm: w-full md:w-1/2 lg:w-1/3">
-                <img  className = "h-64 w-auto" src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt = "Pokemon Logo"/>
+
+                {loading
+                 ? 
+                 <h1>Loading ......</h1>
+                  : 
+                <img  className = "h-64 w-auto" src = {image} alt ="Pokemon"/>
+                }
                 <p className = "text-4xl text-center">Guess the Pokemon</p>
 
                 <div className = "border-2 border-black mt-5">
