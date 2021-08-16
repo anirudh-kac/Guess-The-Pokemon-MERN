@@ -23,4 +23,5 @@ router.post('/',async (req,res)=>{
     await s.save();
     res.json(s).status(201);
 })
+
 module.exports = router
