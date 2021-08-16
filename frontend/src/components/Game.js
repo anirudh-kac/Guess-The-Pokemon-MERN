@@ -7,7 +7,7 @@ import Loader from "./Loader"
 import ScoreContext from '../context/ScoreContext'
 
 function Game() {
-    const {userName,score,incrementScore} = useContext(ScoreContext);
+    const {userName,score,incrementScore,inProgress,setInProgress} = useContext(ScoreContext);
     const history = useHistory()
 
     const [enteredName , setEnteredName] = useState("");
@@ -15,6 +15,7 @@ function Game() {
     const [pokemonName , setPokemonName] = useState("");
     const [image , setImage] = useState("");
 
+    //gets a new pokemon
     const getNewPokemon = async ()=>{
         setLoading(true);
         const {data} = await axios.get('/pokemon');
@@ -22,9 +23,11 @@ function Game() {
         setImage(data.image);
         setLoading(false)
     }
-    
+
+
+    //dont allow without name , and get first pokemon
     useEffect(() => {
-        if(!userName){
+        if(!userName || !inProgress){
             history.push('/')
             return
         }
@@ -41,8 +44,7 @@ function Game() {
             //show message
         }else{
             alert("Wrong")
-
-            //write score
+            setInProgress(false)
             history.push('/score')
         }
         

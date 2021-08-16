@@ -7,7 +7,7 @@ import pokeLogo from "../images/pokemon.png"
 
 function Home() {
 
-    const {setUserName , setScore} = useContext(ScoreContext);
+    const {setUserName , setScore,setInProgress} = useContext(ScoreContext);
     const [name,setName] = useState("");
 
     const history = useHistory()
@@ -19,6 +19,7 @@ function Home() {
     const handleSubmit = (e)=>{
         e.preventDefault()
         setScore(0)
+        setInProgress(true)
         setUserName(name)
         history.push('/game');
     }

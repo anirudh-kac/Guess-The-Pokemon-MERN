@@ -1,14 +1,18 @@
 import { useContext ,useEffect, useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
 import ScoreContext from '../context/ScoreContext'
 import pokeLogo from "../images/pokemon.png"
 
 function Score() {
 
-    const {score,setScore} = useContext(ScoreContext)
-
+    const {userName,score,setScore,inProgress} = useContext(ScoreContext)
+    const history = useHistory();
     const [finalScore,setFinalScore] = useState(0);
     useEffect(()=>{
+
+        if(!userName || inProgress){
+            history.push("/")
+        }
         //write score to db
         setFinalScore(score);
         setScore(0);
