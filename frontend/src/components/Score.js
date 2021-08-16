@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useContext ,useEffect, useState } from 'react'
 import {Link,useHistory} from 'react-router-dom'
 import ScoreContext from '../context/ScoreContext'
@@ -13,9 +14,20 @@ function Score() {
         if(!userName || inProgress){
             history.push("/")
         }
-        //write score to db
+
+        const writeScore = async ()=>{
+            await axios.post('/score',{
+                name : userName,
+                score
+            })
+        }
+
         setFinalScore(score);
+
+         //write score to db
+         writeScore();
         setScore(0);
+        
     },[])
     return (
         <div className = "flex flex-col items-center justify-center">
