@@ -16,6 +16,7 @@ function Game() {
     const [loading,setLoading] = useState(true);
     const [pokemonName , setPokemonName] = useState("");
     const [image , setImage] = useState("");
+    const [hiScore,setHiScore] = useState(0);
 
     const notify = () => toast('Correct');
     //gets a new pokemon
@@ -34,6 +35,12 @@ function Game() {
             history.push('/')
             return
         }
+        const fetchHiScore = async ()=>{
+            const {data} = await axios.get('/score/hiscore');
+            setHiScore(data.score);
+        }
+
+        fetchHiScore();
         getNewPokemon();
     }, [])
 
@@ -49,7 +56,13 @@ function Game() {
             //show message
         }else{
             setInProgress(false)
-            history.push('/score')
+            toast.error(`Wrong!!!\n This was ${pokemonName.toUpperCase()}`,{
+                duration:1000,
+            })
+            setTimeout(()=>{
+                history.push('/score')
+            },1500)
+            
         }
         
     }
@@ -63,7 +76,7 @@ function Game() {
             <div className = "mt-5 flex flex-col justify-end">
                 
                 <p className = "font-bold ">Current Score : {score}</p>
-                <p className = "font-bold ">Hi Score : 100</p>
+                <p className = "font-bold ">Last Hi Score : {hiScore}</p>
             </div>
             <div className = "flex flex-col items-center justify-center sm: w-full md:w-1/2 lg:w-1/3">
 

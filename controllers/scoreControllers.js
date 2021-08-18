@@ -10,7 +10,7 @@ router.get('/',async (req,res)=>{
     res.json(scores).status(200);
 })
 
-//get hi score
+//get hi score object
 router.get('/hiscore',async (req,res)=>{
     const scores = await Score.find({}).limit(1).sort('-score').exec()
     res.json(scores[0]).status(200);

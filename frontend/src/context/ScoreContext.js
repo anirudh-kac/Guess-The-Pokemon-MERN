@@ -7,6 +7,7 @@ export const ScoreProvider = ({children})=>{
     const [score , setScore] = useState(0);
     const [inProgress,setInProgress] = useState(false);
 
+
     const incrementScore = ()=>{
         setScore(score+1);
     }
