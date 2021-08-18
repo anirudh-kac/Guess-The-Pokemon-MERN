@@ -1,6 +1,8 @@
 import {useState,useContext,useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast';
+
 
 import Loader from "./Loader"
 
@@ -15,6 +17,7 @@ function Game() {
     const [pokemonName , setPokemonName] = useState("");
     const [image , setImage] = useState("");
 
+    const notify = () => toast('Correct');
     //gets a new pokemon
     const getNewPokemon = async ()=>{
         setLoading(true);
@@ -38,6 +41,7 @@ function Game() {
         e.preventDefault();
         setEnteredName("");
         if(enteredName.toLowerCase() === pokemonName.toLowerCase()){
+            notify();
             incrementScore();
             //get new pokemon
             getNewPokemon();
@@ -63,6 +67,13 @@ function Game() {
             </div>
             <div className = "flex flex-col items-center justify-center sm: w-full md:w-1/2 lg:w-1/3">
 
+                <Toaster position = "top-right" toastOptions = {{
+                    duration : 500,
+                    style : {
+                        background : '#52de67',
+                        color:'#fff'
+                    }
+                }}/>
                 {loading
                  ? 
                  <Loader/>
