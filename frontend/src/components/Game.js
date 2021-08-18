@@ -37,6 +37,7 @@ function Game() {
         getNewPokemon();
     }, [])
 
+    //checks if entered name is correct  and based on that either continue or move to next
     const handleClick = (e)=>{
         e.preventDefault();
         setEnteredName("");

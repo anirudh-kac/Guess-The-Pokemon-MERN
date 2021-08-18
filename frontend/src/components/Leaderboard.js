@@ -41,7 +41,7 @@ function Leaderboard() {
                  : 
                  <p className = "font-2xl">No Scores on Leaderboard</p>
                 }
-                <Link to = "/home" className = "mt-3 underline text-blue-500" >Home</Link>
+                <Link to = "/" className = "mt-3 underline text-blue-500" >Home</Link>
                 
             </div>
         </div>
