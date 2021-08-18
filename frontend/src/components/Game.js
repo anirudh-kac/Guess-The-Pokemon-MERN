@@ -47,7 +47,6 @@ function Game() {
             getNewPokemon();
             //show message
         }else{
-            alert("Wrong")
             setInProgress(false)
             history.push('/score')
         }
@@ -91,6 +90,7 @@ function Game() {
                         <button className = "bg-green-400 p-2 text-white"
                          type = "submit"
                          onClick = {handleClick}
+                         disabled = {loading}
                          >
                              Enter
                         </button>

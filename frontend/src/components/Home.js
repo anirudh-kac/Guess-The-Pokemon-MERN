@@ -7,8 +7,8 @@ import pokeLogo from "../images/pokemon.png"
 
 function Home() {
 
-    const {setUserName , setScore,setInProgress} = useContext(ScoreContext);
-    const [name,setName] = useState("");
+    const {userName,setUserName , setScore,setInProgress} = useContext(ScoreContext);
+    const [name,setName] = useState(userName);
 
     const history = useHistory()
 
