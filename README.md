@@ -3,6 +3,7 @@ Inspired from the original TV series "Pokemon" , this is a pokemon guessing game
 
 ## Tech Stack Used
 
+* Node js
 * Express
 * React
 * MongoDB
