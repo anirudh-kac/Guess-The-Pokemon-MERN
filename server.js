@@ -2,11 +2,10 @@ const express = require('express')
 const dotenv = require('dotenv').config()
 
 const connectDB = require('./utils/db')
-
 const pokeControllers = require('./controllers/pokeControllers')
 const scoreControllers = require('./controllers/scoreControllers')
-app = express();
 
+app = express();
 app.use(express.json())
 
 connectDB()
